@@ -16,7 +16,12 @@ import {
 
 import ScrollableTabView, {DefaultTabBar,} from 'react-native-scrollable-tab-view';
 
-import WeixinTabBar from './WeixinTabBar'
+import MainTabBar from './MainTabBar';
+import MyAndroid from './myAndroid/MyAndroid';
+import MyIos from './myIos/MyIos';
+import MeiZi from './meizi/MeiZi';
+import MyH5 from './myH5/MyH5';
+import MyVideo from './video/MyVideo';
 
 export default class test extends Component {
 
@@ -29,8 +34,8 @@ export default class test extends Component {
         console.log('test========1constructor')
 
         this.state = {
-            tabNames: ['Tab1', 'Tab2', 'Tab3', 'Tab4', 'Tab5'],
-            tabIconNames: ['ios-paper', 'ios-albums', 'ios-paper-plane', 'ios-person-add', , 'ios-paper-plane'],
+            tabNames: ['福利', 'android', 'ios', '前端', '休息视频'],
+            tabIconNames: ['ios-woman', 'logo-android', 'logo-apple', 'logo-chrome', 'md-woman'],
         };
 
     }
@@ -131,31 +136,38 @@ export default class test extends Component {
 
         let tabNames = this.state.tabNames;
         let tabIconNames = this.state.tabIconNames;
+        var userBean = {name: '刘备', age: 36, sex: 'man', love: 'war'};
+        var {name, sex} = userBean;
         return (
 
             <ScrollableTabView
-
-                renderTabBar={() => <WeixinTabBar tabNames={tabNames} tabIconNames={tabIconNames}/>}
+                locked={true}
+                scrollWithoutAnimation={true}
+                renderTabBar={() => <MainTabBar tabNames={tabNames} tabIconNames={tabIconNames}/>}
                 tabBarPosition='bottom'>
 
                 <View style={styles.content} tabLabel='key1'>
-                    <Text>#1</Text>
+                    <MeiZi
+
+                        name={name}
+                        sex={sex}
+                    />
                 </View>
 
                 <View style={styles.content} tabLabel='key2'>
-                    <Text>#2</Text>
+                    <MyAndroid></MyAndroid>
                 </View>
 
                 <View style={styles.content} tabLabel='key3'>
-                    <Text>#3</Text>
+                    <MyIos></MyIos>
                 </View>
 
                 <View style={styles.content} tabLabel='key4'>
-                    <Text>#4</Text>
+                    <MyH5/>
                 </View>
 
-                <View style={styles.content} tabLabel='key4'>
-                    <Text>#5</Text>
+                <View style={styles.content} tabLabel='key5'>
+                    <MyVideo/>
                 </View>
 
             < / ScrollableTabView >
@@ -163,7 +175,6 @@ export default class test extends Component {
         );
 
     }
-
 
 }
 
