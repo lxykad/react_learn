@@ -19,6 +19,7 @@ export default class MyAndroid extends Component {
         super(props)
         this.state = {
             number: 20,
+            inputContent: '',
         }
     }
 
@@ -28,22 +29,21 @@ export default class MyAndroid extends Component {
             <View >
 
                 <Text style={{width:100,height:100,backgroundColor:'#ff0000'}} onPress={()=>{
-                    {this.getInput()}
+                    {this.getInputContent()}
                 }}>
                     Android
                 </Text>
 
-                <TextInput ref="myInput" style={{width:200,height:50,backgroundColor:'#ffffff'}} />
-
+                <TextInput onChangeText={(text)=>{this.setState({inputContent:text})}}
+                           style={{width:200,height:50,backgroundColor:'#ffffff'}}/>
 
             </View>
 
         );
     }
 
-    getInput() {
-
-        console.log("input=======" );
+    getInputContent() {
+        alert(this.state.inputContent);
     }
 
 }
